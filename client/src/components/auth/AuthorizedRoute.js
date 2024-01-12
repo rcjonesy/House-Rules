@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 export const AuthorizedRoute = ({ children, loggedInUser, roles, all }) => {
   let authed = false;
   if (loggedInUser) {
+    // This condition checks if roles are provided (roles is truthy) and if the roles array has a length greater than 0.
     if (roles && roles.length) {
       authed = all
         ? roles.every((r) => loggedInUser.roles.includes(r))

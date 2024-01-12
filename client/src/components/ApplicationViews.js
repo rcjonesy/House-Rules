@@ -7,6 +7,7 @@ import { UserProfileList } from "./UserProfileList";
 import { UserProfileDetails } from "./UserProfileDetails";
 import { ChoresList } from "./ChoresList";
 import { ChoreDetails } from "./ChoreDetails";
+import { CreateChore } from "./auth/CreateChore";
 
 
 
@@ -25,7 +26,7 @@ export const ApplicationViews = ({ loggedInUser, setLoggedInUser }) => {
                         </AuthorizedRoute>
                     }
                 />
-                {/* //============================================================================================== */}
+            {/* //============================================================================================== */}
                 <Route path="/userprofiles">
                     <Route
                         index
@@ -45,13 +46,16 @@ export const ApplicationViews = ({ loggedInUser, setLoggedInUser }) => {
                         }
                     />
                 </Route>
-                {/* //============================================================================================== */}
+
+
+            {/* //============================================================================================== */}
+
                 <Route path="/chores">
                     <Route
                         index
                         element={
                             <AuthorizedRoute loggedInUser={loggedInUser}>
-                                <ChoresList loggedInUser={loggedInUser}/>
+                                <ChoresList loggedInUser={loggedInUser} />
                             </AuthorizedRoute>
                         }
                     />
@@ -66,7 +70,8 @@ export const ApplicationViews = ({ loggedInUser, setLoggedInUser }) => {
                     />
 
                 </Route>
-                {/* //============================================================================================== */}
+
+            {/* //============================================================================================== */}
 
                 <Route
                     path="login"
@@ -79,7 +84,25 @@ export const ApplicationViews = ({ loggedInUser, setLoggedInUser }) => {
                 />
             </Route>
 
+            {/* //============================================================================================== */}
+
+
+            <Route
+                path="/createchore"
+                element={
+                    <AuthorizedRoute roles={["Admin"]} loggedInUser={loggedInUser}>
+                        <CreateChore />
+                    </AuthorizedRoute>
+                }
+            />
+
+            {/* //============================================================================================== */}
+
             <Route path="*" element={<p>Whoops, nothing here...</p>} />
+
+            {/* //============================================================================================== */}
+
+            
 
         </Routes>
     );

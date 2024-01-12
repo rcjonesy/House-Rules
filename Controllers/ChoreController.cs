@@ -84,13 +84,15 @@ public class ChoreController : ControllerBase
             {
                 Id = cc.Id,
                 UserProfileId = cc.UserProfileId,
-                UserProfile = new UserProfileDTO
-                {
-                    Id = cc.UserProfile.Id,
-                    FirstName = cc.UserProfile.FirstName,
-                    LastName = cc.UserProfile.LastName
+                // UserProfile = new UserProfileDTO
+                // {
+                //     Id = cc.UserProfile.Id,
+                //     FirstName = cc.UserProfile.FirstName,
+                //     LastName = cc.UserProfile.LastName
 
-                }
+                // },
+
+                CompletedOn = cc.CompletedOn
             }).ToList()
         };
         return Ok(choreDTO);
@@ -102,7 +104,7 @@ public class ChoreController : ControllerBase
     //post New Chore
 
     [HttpPost]
-    [Authorize]
+    // [Authorize]
 
     public IActionResult NewChore(Chore newChore)
     {
@@ -160,7 +162,7 @@ public class ChoreController : ControllerBase
     //=================================================================================================
     //date completed with query params
     [HttpPost("{id}/complete")]
-    [Authorize]
+    // [Authorize]
     public IActionResult CompleteChore(int id, int userId)
     {
         // Step 1: Retrieve the chore object from the database based on the provided 'id'
@@ -198,7 +200,7 @@ public class ChoreController : ControllerBase
 
     //assign with query params
     [HttpPost("{id}/assign")]
-    [Authorize]
+    // [Authorize]
     public IActionResult AssignChore(int id, int userId)
     {
         // Step 1: Retrieve the chore object from the database based on the provided 'id'
@@ -229,8 +231,8 @@ public class ChoreController : ControllerBase
     }
 
     [HttpPost("{id}/unassign")]
-    [Authorize]
-    public IActionResult UnassignChore(int id, [FromQuery] int userId)
+    // [Authorize]
+    public IActionResult UnassignChore(int id, int userId)
     {
         // Find the chore assignment to unassign
         ChoreAssignment? choreAssignmentToRemove = _dbContext.ChoreAssignments.FirstOrDefault(ca => ca.ChoreId == id && ca.UserProfileId == userId);

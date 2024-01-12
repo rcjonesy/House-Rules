@@ -21,7 +21,7 @@ public class UserProfileController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
+    // [Authorize]
     public IActionResult Get()
     {
         return Ok(_dbContext
@@ -96,7 +96,7 @@ public class UserProfileController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize]
+    // [Authorize]
 
    public IActionResult GetById(int id)
 {
@@ -117,6 +117,8 @@ public class UserProfileController : ControllerBase
         Id = userProfile.Id,
         FirstName = userProfile.FirstName,
         LastName = userProfile.LastName,
+        Address = userProfile.Address,
+        
         IdentityUserId = userProfile.IdentityUserId,
         IdentityUser = userProfile.IdentityUser,
         ChoreAssignments = userProfile.ChoreAssignments.Select(ca => new ChoreAssignmentDTO
